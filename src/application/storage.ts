@@ -1,18 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { RedisServiceI } from 'src/domain/redis.service.interface';
+import { StoreServiceI } from 'src/domain/storage.service.interface';
 
 @Injectable()
 export class StorageApp {
-  constructor(@Inject('redisRepository') private redisService: RedisServiceI) {}
+  constructor(@Inject('storeCosmos') private storeService: StoreServiceI) {}
   getAll() {
-    return this.redisService.getAll();
+    return this.storeService.getAll();
   }
   getById() {
     return '';
   }
 
   save(data) {
-    return this.redisService.save(data);
+    return this.storeService.save(data);
   }
   update(data: any, id: any) {
     // TODO

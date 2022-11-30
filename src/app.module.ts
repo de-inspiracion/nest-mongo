@@ -1,11 +1,18 @@
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Module } from '@nestjs/common';
-import { RedisModule } from './infra/redis/redis.module';
 import { StorageApp } from './application/storage';
+import { CosmosModule } from './infra/cosmos/cosmos.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import config from './configuration/config';
 @Module({
-  imports: [RedisModule],
+  imports: [
+    CosmosModule,
+    ConfigModule.forRoot({
+      load: [config],
+    }),
+  ],
   controllers: [AppController],
-  providers: [AppService, StorageApp],
+  providers: [AppService, StorageApp, ConfigService],
 })
 export class AppModule {}

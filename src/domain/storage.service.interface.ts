@@ -1,4 +1,4 @@
-export interface RedisServiceI {
+export interface StoreServiceI {
   getAll: () => any;
   getById: () => any;
   save: (data: any) => void;
